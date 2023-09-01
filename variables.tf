@@ -22,6 +22,7 @@ variable "description" {
 }
 
 variable "ingress_rules" {
+  description = "Inbound rules (ingress) for this security group."
   type = map(object({
     description = optional(string, null)
     ip_protocol = optional(string, "tcp")
@@ -43,6 +44,7 @@ variable "ingress_rules" {
 }
 
 variable "egress_rules" {
+  description = "Outbound rules (egress) for this security group."
   type = map(object({
     description = optional(string, null)
     ip_protocol = optional(string, "tcp")
