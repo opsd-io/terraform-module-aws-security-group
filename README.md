@@ -45,6 +45,7 @@ No modules.
 | Name | Type |
 |------|------|
 | [aws_security_group.main](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/security_group) | resource |
+| [aws_vpc_security_group_egress_rule.main](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_security_group_egress_rule) | resource |
 | [aws_vpc_security_group_ingress_rule.main](https://registry.terraform.io/providers/hashicorp/aws/latest/docs/resources/vpc_security_group_ingress_rule) | resource |
 
 ## Inputs
@@ -53,7 +54,8 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_common_tags"></a> [common\_tags](#input\_common\_tags) | A map of tags to assign to every resource in this module. | `map(string)` | `{}` | no |
 | <a name="input_description"></a> [description](#input\_description) | Security group description. | `string` | `null` | no |
-| <a name="input_ingress_rules"></a> [ingress\_rules](#input\_ingress\_rules) | n/a | <pre>map(object({<br>    description = optional(string, null)<br>    ip_protocol = optional(string, "tcp")<br><br>    port_number = optional(number, null)<br>    from_port   = optional(number, null)<br>    to_port     = optional(number, null)<br><br>    icmp_type = optional(number, null)<br>    icmp_code = optional(number, null)<br><br>    cidr_ipv4         = optional(string, null)<br>    cidr_ipv6         = optional(string, null)<br>    prefix_list_id    = optional(string, null)<br>    security_group_id = optional(string, null)<br>    extra_tags        = optional(map(string), {})<br>  }))</pre> | `{}` | no |
+| <a name="input_egress_rules"></a> [egress\_rules](#input\_egress\_rules) | Outbound rules (egress) for this security group. | <pre>map(object({<br>    description = optional(string, null)<br>    ip_protocol = optional(string, "tcp")<br><br>    port_number = optional(number, null)<br>    from_port   = optional(number, null)<br>    to_port     = optional(number, null)<br><br>    icmp_type = optional(number, null)<br>    icmp_code = optional(number, null)<br><br>    cidr_ipv4         = optional(string, null)<br>    cidr_ipv6         = optional(string, null)<br>    prefix_list_id    = optional(string, null)<br>    security_group_id = optional(string, null)<br>    extra_tags        = optional(map(string), {})<br>  }))</pre> | <pre>{<br>  "allow-all": {<br>    "cidr_ipv4": "0.0.0.0/0",<br>    "ip_protocol": "all"<br>  }<br>}</pre> | no |
+| <a name="input_ingress_rules"></a> [ingress\_rules](#input\_ingress\_rules) | Inbound rules (ingress) for this security group. | <pre>map(object({<br>    description = optional(string, null)<br>    ip_protocol = optional(string, "tcp")<br><br>    port_number = optional(number, null)<br>    from_port   = optional(number, null)<br>    to_port     = optional(number, null)<br><br>    icmp_type = optional(number, null)<br>    icmp_code = optional(number, null)<br><br>    cidr_ipv4         = optional(string, null)<br>    cidr_ipv6         = optional(string, null)<br>    prefix_list_id    = optional(string, null)<br>    security_group_id = optional(string, null)<br>    extra_tags        = optional(map(string), {})<br>  }))</pre> | `{}` | no |
 | <a name="input_name"></a> [name](#input\_name) | Name of the security group. | `string` | `null` | no |
 | <a name="input_vpc_id"></a> [vpc\_id](#input\_vpc\_id) | The ID of the VPC. | `string` | n/a | yes |
 
