@@ -64,9 +64,11 @@ No modules.
 | Name | Description |
 |------|-------------|
 | <a name="output_arn"></a> [arn](#output\_arn) | The ARN of the security group. |
+| <a name="output_egress_rules_arns"></a> [egress\_rules\_arns](#output\_egress\_rules\_arns) | The ARNs of the security group egress rules. |
+| <a name="output_egress_rules_ids"></a> [egress\_rules\_ids](#output\_egress\_rules\_ids) | The IDs of the security group egress rules. |
 | <a name="output_id"></a> [id](#output\_id) | The ID of the security group. |
-| <a name="output_ingress_rules_arns"></a> [ingress\_rules\_arns](#output\_ingress\_rules\_arns) | n/a |
-| <a name="output_ingress_rules_ids"></a> [ingress\_rules\_ids](#output\_ingress\_rules\_ids) | n/a |
+| <a name="output_ingress_rules_arns"></a> [ingress\_rules\_arns](#output\_ingress\_rules\_arns) | The ARNs of the security group ingress rules. |
+| <a name="output_ingress_rules_ids"></a> [ingress\_rules\_ids](#output\_ingress\_rules\_ids) | The IDs of the security group ingress rules. |
 | <a name="output_name"></a> [name](#output\_name) | The name of the security group. |
 <!-- END_TF_DOCS -->
 
