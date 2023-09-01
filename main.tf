@@ -70,12 +70,36 @@ resource "aws_vpc_security_group_ingress_rule" "main" {
   })
 }
 
-# resource "aws_vpc_security_group_egress_rule" "main" {
-#   for_each = var.egress_rules
-#   security_group_id = aws_security_group.main.id
+resource "aws_vpc_security_group_egress_rule" "main" {
+  for_each = var.egress_rules
 
-#   cidr_ipv4   = "10.0.0.0/8"
-#   from_port   = 80
-#   ip_protocol = "tcp"
-#   to_port     = 80
-# }
+  security_group_id = aws_security_group.main.id
+  description       = each.value.description
+
+  ip_protocol = each.value.ip_protocol
+
+  # See aws_vpc_security_group_ingress_rule.main.from_port for comment.
+  from_port = (
+    contains(local.port_protocol, lower(each.value.ip_protocol)) ? coalesce(each.value.port_number, each.value.from_port, 0) : (
+      contains(local.icmp_protocol, lower(each.value.ip_protocol)) ? coalesce(each.value.icmp_type, -1) :
+      null
+    )
+  )
+
+  # See aws_vpc_security_group_ingress_rule.main.to_port for comment.
+  to_port = (
+    contains(local.port_protocol, lower(each.value.ip_protocol)) ? coalesce(each.value.port_number, each.value.to_port, 65535) : (
+      contains(local.icmp_protocol, lower(each.value.ip_protocol)) ? coalesce(each.value.icmp_code, -1) :
+      null
+    )
+  )
+
+  cidr_ipv4                    = each.value.cidr_ipv4
+  cidr_ipv6                    = each.value.cidr_ipv6
+  prefix_list_id               = each.value.prefix_list_id
+  referenced_security_group_id = each.value.security_group_id
+
+  tags = merge(var.common_tags, each.value.extra_tags, {
+    Name = each.key
+  })
+}
