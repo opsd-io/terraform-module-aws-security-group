@@ -41,3 +41,29 @@ variable "ingress_rules" {
   }))
   default = {}
 }
+
+variable "egress_rules" {
+  type = map(object({
+    description = optional(string, null)
+    ip_protocol = optional(string, "tcp")
+
+    port_number = optional(number, null)
+    from_port   = optional(number, null)
+    to_port     = optional(number, null)
+
+    icmp_type = optional(number, null)
+    icmp_code = optional(number, null)
+
+    cidr_ipv4         = optional(string, null)
+    cidr_ipv6         = optional(string, null)
+    prefix_list_id    = optional(string, null)
+    security_group_id = optional(string, null)
+    extra_tags        = optional(map(string), {})
+  }))
+  default = {
+    "allow-all" = {
+      ip_protocol = "all"
+      cidr_ipv4   = "0.0.0.0/0"
+    }
+  }
+}
