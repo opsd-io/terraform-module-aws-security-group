@@ -6,7 +6,7 @@ module "sg_test1" {
   source = "github.com/opsd-io/terraform-module-aws-security-group"
 
   vpc_id = aws_vpc.main.id
-  # name   = "test-sg1"
+  name   = "test-sg1"
 
   ingress_rules = {
     test = {
@@ -20,7 +20,7 @@ module "sg_test2" {
   source = "github.com/opsd-io/terraform-module-aws-security-group"
 
   vpc_id = aws_vpc.main.id
-  # name   = "test-sg1"
+  name   = "test-sg2"
 
   ingress_rules = {
     test2 = {
