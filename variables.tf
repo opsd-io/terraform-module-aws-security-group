@@ -6,6 +6,7 @@ variable "common_tags" {
 
 variable "vpc_id" {
   description = "The ID of the VPC."
+  nullable    = false
   type        = string
 }
 
@@ -23,6 +24,7 @@ variable "description" {
 
 variable "ingress_rules" {
   description = "Inbound rules (ingress) for this security group."
+  nullable    = false
   type = map(object({
     description = optional(string, null)
     ip_protocol = optional(string, "tcp")
@@ -45,6 +47,7 @@ variable "ingress_rules" {
 
 variable "egress_rules" {
   description = "Outbound rules (egress) for this security group."
+  nullable    = false
   type = map(object({
     description = optional(string, null)
     ip_protocol = optional(string, "tcp")
