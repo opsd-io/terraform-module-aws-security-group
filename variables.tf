@@ -66,9 +66,9 @@ variable "egress_rules" {
     extra_tags        = optional(map(string), {})
   }))
   default = {
-    "allow-all" = {
-      ip_protocol = "all"
-      cidr_ipv4   = "0.0.0.0/0"
-    }
+    # "allow-all" = {
+    #   ip_protocol = "all"
+    #   cidr_ipv4   = "0.0.0.0/0"
+    # }
   }
 }
