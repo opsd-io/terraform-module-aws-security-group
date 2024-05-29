@@ -42,7 +42,16 @@ variable "ingress_rules" {
     security_group_id = optional(string, null)
     extra_tags        = optional(map(string), {})
   }))
-  default = {}
+  default = {
+    # "icmp-in" = {
+    #   ip_protocol = "icmp"
+    #   cidr_ipv4   = "0.0.0.0/0"
+    # }
+    # "ssh-in" = {
+    #   cidr_ipv4   = "0.0.0.0/0"
+    #   port_number = 22
+    # }
+  }
 }
 
 variable "egress_rules" {
@@ -66,9 +75,9 @@ variable "egress_rules" {
     extra_tags        = optional(map(string), {})
   }))
   default = {
-    "allow-all" = {
-      ip_protocol = "all"
-      cidr_ipv4   = "0.0.0.0/0"
-    }
+    # "allow-all" = {
+    #   ip_protocol = "all"
+    #   cidr_ipv4   = "0.0.0.0/0"
+    # }
   }
 }
